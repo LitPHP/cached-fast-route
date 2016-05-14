@@ -12,10 +12,13 @@
             "Lit\\CachedFastRoute\\": "src"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "psr/http-message": "^1.0",
         "nikic/fast-route": "^1.0",
-        "litphp/nexus": "^0.5.0"
+        "litphp/nexus": ">=0.5.0",
+        "litphp/lit": ">=0.5.0"
     },
     "extra": {
         "branch-alias": {
