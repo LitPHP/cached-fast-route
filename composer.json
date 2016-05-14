@@ -1,0 +1,25 @@
+{
+    "name": "litphp/cached-fast-route",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "McFog Wang",
+            "email": "mcfogw@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lit\\CachedFastRoute\\": "src"
+        }
+    },
+    "require": {
+        "psr/http-message": "^1.0",
+        "nikic/fast-route": "^1.0",
+        "litphp/nexus": "^0.5.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.5.x-dev"
+        }
+    }
+}
