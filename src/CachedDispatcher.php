@@ -31,14 +31,14 @@ class CachedDispatcher implements Dispatcher
     /**
      * @var callable
      */
-    protected $routeDefination;
+    protected $routeDefinition;
 
     /**
      * RouteDispatcher constructor.
      * @param ISingleValue $cache
      * @param RouteParser $routeParser
      * @param DataGenerator $dataGenerator
-     * @param callable $routeDefination
+     * @param callable $routeDefinition
      * @param string $dispatcherClass
      * @internal param RouteCollector $routeCollector
      */
@@ -46,14 +46,14 @@ class CachedDispatcher implements Dispatcher
         ISingleValue $cache,
         RouteParser $routeParser,
         DataGenerator $dataGenerator,
-        callable $routeDefination,
+        callable $routeDefinition,
         $dispatcherClass
     ) {
         $this->cache = $cache;
         $this->routeParser = $routeParser;
         $this->dataGenerator = $dataGenerator;
         $this->dispatcherClass = $dispatcherClass;
-        $this->routeDefination = $routeDefination;
+        $this->routeDefinition = $routeDefinition;
     }
 
     public function dispatch($httpMethod, $uri)
@@ -68,7 +68,7 @@ class CachedDispatcher implements Dispatcher
                 $data = $this->cache->get();
             } else {
                 $collector = new RouteCollector($this->routeParser, $this->dataGenerator);
-                call_user_func($this->routeDefination, $collector);
+                call_user_func($this->routeDefinition, $collector);
                 $data = $collector->getData();
                 $this->cache->set($data);
             }
