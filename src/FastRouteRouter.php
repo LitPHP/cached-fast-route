@@ -1,9 +1,9 @@
 <?php namespace Lit\CachedFastRoute;
 
 use FastRoute\Dispatcher;
-use Interop\Http\ServerMiddleware\DelegateInterface;
 use Lit\Core\AbstractRouter;
-use Lit\Core\Interfaces\IStubResolver;
+use Lit\Core\Interfaces\RouterStubResolverInterface;
+use Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ServerRequestInterface;
 
 class FastRouteRouter extends AbstractRouter
@@ -19,7 +19,7 @@ class FastRouteRouter extends AbstractRouter
 
     public function __construct(
         Dispatcher $dispatcher,
-        IStubResolver $stubResolver,
+        RouterStubResolverInterface $stubResolver,
         $notFound,
         $methodNotAllowed = null
     ) {
@@ -69,16 +69,15 @@ class FastRouteRouter extends AbstractRouter
 
     protected function proxy($stub, $vars)
     {
-        return function (
-            ServerRequestInterface $request,
-            DelegateInterface $delegate
-        ) use ($stub, $vars) {
+        $handle = function (ServerRequestInterface $request) use ($stub, $vars) {
             foreach ($vars as $key => $val) {
                 $request = $request->withAttribute($key, $val);
             }
-            $middleware = $this->resolve($stub);
+            $handler = $this->resolve($stub);
 
-            return $middleware->process($request, $delegate);
+            return $handler->handle($request);
         };
+
+        return CallableHandler::wrap($handle);
     }
 }

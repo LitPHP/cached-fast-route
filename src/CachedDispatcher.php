@@ -4,7 +4,7 @@ use FastRoute\DataGenerator;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use FastRoute\RouteParser;
-use Lit\Nexus\Interfaces\ISingleValue;
+use Lit\Nexus\Interfaces\SingleValueInterface;
 
 class CachedDispatcher implements Dispatcher
 {
@@ -13,7 +13,7 @@ class CachedDispatcher implements Dispatcher
      */
     protected $dispatcher;
     /**
-     * @var ISingleValue
+     * @var SingleValueInterface
      */
     protected $cache;
     /**
@@ -35,7 +35,7 @@ class CachedDispatcher implements Dispatcher
 
     /**
      * RouteDispatcher constructor.
-     * @param ISingleValue $cache
+     * @param SingleValueInterface $cache
      * @param RouteParser $routeParser
      * @param DataGenerator $dataGenerator
      * @param callable $routeDefinition
@@ -43,7 +43,7 @@ class CachedDispatcher implements Dispatcher
      * @internal param RouteCollector $routeCollector
      */
     public function __construct(
-        ISingleValue $cache,
+        SingleValueInterface $cache,
         RouteParser $routeParser,
         DataGenerator $dataGenerator,
         callable $routeDefinition,

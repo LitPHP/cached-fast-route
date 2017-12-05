@@ -17,12 +17,12 @@
     "require": {
         "psr/http-message": "^1.0",
         "nikic/fast-route": "^1.0",
-        "litphp/nexus": ">=0.6.0",
-        "litphp/lit": ">=0.7.0"
+        "litphp/nexus": "^0.8",
+        "litphp/lit": "^0.8"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.6.x-dev"
+            "dev-master": "0.7.x-dev"
         }
     }
 }
