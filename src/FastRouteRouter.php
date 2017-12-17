@@ -67,7 +67,7 @@ class FastRouteRouter extends AbstractRouter
         }
     }
 
-    protected function proxy($stub, $vars)
+    protected function proxy($stub, array $vars)
     {
         $handle = function (ServerRequestInterface $request) use ($stub, $vars) {
             foreach ($vars as $key => $val) {
